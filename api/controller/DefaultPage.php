@@ -14,8 +14,8 @@ class DefaultPage extends Controller {
                 "controller" => get_class() . " Controller"
             ),
             "data" => array(
-                "appName" => "myRouter",
-                "version" => "0.0.2",
+                "appName" => Config::APP_NAME,
+                "version" => Config::APP_VERSION,
                 "availableRoutes" => array(
                     "/" => array(
                         "contentType" => RouteConstants::CONTENT_TYPE_JSON,
