@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * The DefaultHandler class stores all handlers
+ * for error responses
+ */
+
 class DefaultHandler {
 
     public static function invalidRequestMethod() {

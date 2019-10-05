@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * The class HttpResponseCodes has some
+ * of the most important response codes as constants
+ */
+
 class HttpResponseCodes {
 
     # OK

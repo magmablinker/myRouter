@@ -34,6 +34,11 @@ class URIDecoder {
 
     }
 
+    /*
+     * Function that splits the uri into slices
+     * @param $uri the uri that will be sliced
+     */
+
     private function decodeURI($uri) {
         $slices = preg_split("~(/)~", str_replace("api", "", $uri), -1, PREG_SPLIT_NO_EMPTY);
         return $slices;
