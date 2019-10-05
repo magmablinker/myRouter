@@ -20,9 +20,6 @@ spl_autoload_register(function($className) {
         case file_exists(sprintf("handler/%s.php", $className)):
             require_once(sprintf("handler/%s.php", $className));
             break;
-        case file_exists(sprintf("model/%s.php", $className)):
-            require_once(sprintf("model/%s.php", $className));
-            break;
         default:
             die("Failed to load class " . $className);
             break;
