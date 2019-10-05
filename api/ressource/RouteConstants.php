@@ -8,13 +8,12 @@
 class RouteConstants {
 
     # Content Types
-    const CONTENT_TYPE = "Content-Type: ";
-    const CONTENT_TYPE_JSON = self::CONTENT_TYPE . "application/json";
-    const CONTENT_TYPE_XML = self::CONTENT_TYPE . "application/xml";
-    const CONTENT_TYPE_TEXT = self::CONTENT_TYPE . "text/html";
+    const CONTENT_TYPE_JSON = "Content-Type: application/json";
+    const CONTENT_TYPE_XML = "Content-Type: application/xml";
+    const CONTENT_TYPE_TEXT = "Content-Type: text/html";
 
     # Acces-Control-Allow-Origin const
-    const ACCES_CONTROL_ORIGIN = "Access-Control-Allow-Origin: " . Config::HOST_NAME;
+    const ACCESS_CONTROL_ORIGIN = "Access-Control-Allow-Origin: " . Config::HOST_NAME;
 
     # HTTP Methods
     const HTTP_GET = "GET";

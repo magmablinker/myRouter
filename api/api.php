@@ -9,7 +9,7 @@
 
 include("autoloader.php");
 
-header(RouteConstants::ACCES_CONTROL_ORIGIN);
+header(RouteConstants::ACCESS_CONTROL_ORIGIN);
 
 # We have to do this because we can't assign
 # static variables dynamically without helper
