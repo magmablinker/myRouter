@@ -1,7 +1,5 @@
-myRouter
+myRouter basic documentation
 ======
-
-## Basic Documentation
 ### Initializing the router
 The Router has always to be initialized with the
 following function and include.
