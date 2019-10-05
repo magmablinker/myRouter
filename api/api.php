@@ -16,7 +16,7 @@ header(RouteConstants::ACCESS_CONTROL_ORIGIN);
 Route::build();
 
 Route::all("/", function(){
-    return View::json(DefaultPage::json());
+    return DefaultPage::json();
 });
 
 Route::multiple(["GET", "POST"], "/exampleRoute", function(){

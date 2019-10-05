@@ -7,7 +7,7 @@ class DefaultPage extends Controller {
      * information about your api
      */
     public static function json() {
-        return array(
+        return View::json(array(
             "info" => array(
                 "route" => Route::$REQUEST_ROUTE->getRoute(),
                 "query" => Route::$REQUEST_ROUTE->getQuery(),
@@ -44,7 +44,7 @@ class DefaultPage extends Controller {
                     )
                 ),
             )
-        );
+        ));
     }
 
 }
