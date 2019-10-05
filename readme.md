@@ -2,8 +2,9 @@ myRouter
 ======
 
 ## Basic Documentation
+### Initializing the router
 The Router has always to be initialized with the
-following function.
+following function and include.
 ```php
 # Include the autoloader to dynamically load classes
 include("autoloader.php");
@@ -13,6 +14,7 @@ include("autoloader.php");
 Route::build(); 
 ```
 
+### Adding routes
 How do you add a route with this router?
 Reference <https://github.com/pmma1312/myRouter/blob/master/api/core/Route.php>
 ```php
