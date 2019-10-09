@@ -26,4 +26,8 @@ spl_autoload_register(function($className) {
     }
 });
 
+# We have to do this because we can't assign
+# static variables dynamically without helper
+Route::build();
+
 ?>
