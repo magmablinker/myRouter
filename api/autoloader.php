@@ -30,4 +30,6 @@ spl_autoload_register(function($className) {
 # static variables dynamically without helper
 Route::build();
 
+header(RouteConstants::ACCESS_CONTROL_ORIGIN);
+
 ?>

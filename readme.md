@@ -5,11 +5,8 @@ The Router has always to be initialized with the
 following function and include.
 ```php
 # Include the autoloader to dynamically load classes
+# and build the Route
 include("autoloader.php");
-
-# We have to do this because we can't assign
-# static variables dynamically without helper
-Route::build(); 
 ```
 
 ### Adding routes

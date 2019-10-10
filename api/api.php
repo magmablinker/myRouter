@@ -9,8 +9,6 @@
 
 include("autoloader.php");
 
-header(RouteConstants::ACCESS_CONTROL_ORIGIN);
-
 Route::all("/", function(){
     return DefaultPage::json();
 });
