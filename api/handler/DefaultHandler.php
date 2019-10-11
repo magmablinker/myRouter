@@ -15,6 +15,17 @@ class DefaultHandler {
         )));
     }
 
+    public static function badRequest($message = null) {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_BAD_REQUEST);
+
+        $message = ($message != null) ? $message : "No further information";
+
+        print(json_encode([
+            "httpResponse" => "Bad Request",
+            "message" => $message
+        ]));
+    }
+
 }
 
 ?>
