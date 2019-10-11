@@ -2,7 +2,7 @@ myRouter basic documentation
 ======
 ### Initializing the router
 The Router has always to be initialized with the
-following function and include.
+following include.
 ```php
 # Include the autoloader to dynamically load classes
 # and build the Route
