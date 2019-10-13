@@ -1,12 +1,5 @@
 <?php
 
-/*
- * ToDo:
- * ##########
- * # Fix weird bug in uridecoder
- * ##########
- */
-
 include("autoloader.php");
 
 Route::all("/", function(){
@@ -22,6 +15,7 @@ Route::multiple(["GET", "POST"], "/exampleRoute", function(){
 });
 
 Route::get("/otherRoute", function(){
+    print(Route::$REQUEST_ROUTE->getQuery());
     return OtherRoute::html();
 });
 

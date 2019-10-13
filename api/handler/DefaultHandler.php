@@ -13,6 +13,16 @@ class DefaultHandler {
             "httpResponseCode" => HttpResponseCodes::HTTP_INVALID_REQUEST_METHOD,
             "message" => "Invalid method for this route"
         )));
+        die();
+    }
+
+    public static function routeNotFound() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_NOT_FOUND);
+        print(json_encode(array(
+            "httpResponseCode" => HttpResponseCodes::HTTP_NOT_FOUND,
+            "message" => "The requested route has not been found."
+        )));
+        die();
     }
 
     public static function badRequest($message = null) {
@@ -24,6 +34,7 @@ class DefaultHandler {
             "httpResponse" => "Bad Request",
             "message" => $message
         ]));
+        die();
     }
 
 }

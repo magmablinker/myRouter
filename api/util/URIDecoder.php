@@ -21,7 +21,7 @@ class URIDecoder {
         if($length > 0) {
             $this->route = "";
             for($i = 0; $i < $length; $i++) {
-                if($length == 1 || $slices[$i] < ($length - 1)) {
+                if($length == 1 || $i < ($length - 1)) {
                     $this->route .= "/" . $slices[$i];
                 } else {
                     $this->query = $slices[$i];
