@@ -34,16 +34,12 @@ class URIDecoder {
      */
 
     private function decodeURI($uri) {
-        $slices = preg_split("~(/)~", str_replace("api", "", $uri), -1, PREG_SPLIT_NO_EMPTY);
+        $slices = preg_split("~(/)~", $uri, -1, PREG_SPLIT_NO_EMPTY);
         return $slices;
     }
 
     public function getRoute() {
         return $this->route;
-    }
-
-    public function getQuery() {
-        return $this->query;
     }
 
 }

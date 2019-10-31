@@ -13,7 +13,7 @@ include("autoloader.php");
 How do you add a route with this router?
 Reference <https://github.com/pmma1312/myRouter/blob/master/api/core/Route.php>
 ```php
-# This will add a "GET" Route to the URI "api/"
+# This will add a "GET" Route to the URI "/"
 # The Route will just print "Hello World!"
 Route::get("/", function(){
     print("Hello World!");
@@ -22,7 +22,7 @@ Route::get("/", function(){
 
 How do you add a route with multiple HTTP methods?
 ```php
-# This will add a "PUT" and "POST" Route to the URI "api/foo"
+# This will add a "PUT" and "POST" Route to the URI "/foo"
 # The Route will print the request method
 Route::multiple(["PUT", "POST"], "/foo", function(){
     print($_SERVER['REQUEST_METHOD']);
@@ -31,7 +31,7 @@ Route::multiple(["PUT", "POST"], "/foo", function(){
 
 How do you add a route with parameters?
 ```PHP
-# This will add a "GET" Route to the URI "api/user/{id}"
+# This will add a "GET" Route to the URI "/user/{id}"
 # The parameter has to be a regex for what we're looking for
 # since the Route class matches the Route via regex
 Route::get("/user/([0-9]+)", function(){

@@ -10,7 +10,6 @@ class DefaultPage extends Controller {
         return View::json(array(
             "info" => array(
                 "route" => Route::$REQUEST_ROUTE->getRoute(),
-                "query" => Route::$REQUEST_ROUTE->getQuery(),
                 "controller" => get_class() . " Controller"
             ),
             "data" => array(

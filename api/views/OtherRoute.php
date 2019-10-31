@@ -17,7 +17,7 @@
         var container = $(".container");
 
         $(document).ready(function(){
-            $.get("/api", (data) => {
+            $.get("/", (data) => {
                 console.log("Presenting you the API info:");
                 console.log(data);
             });

@@ -15,7 +15,6 @@ Route::multiple(["GET", "POST"], "/exampleRoute", function(){
 });
 
 Route::get("/otherRoute", function(){
-    print(Route::$REQUEST_ROUTE->getQuery());
     return OtherRoute::html();
 });
 
