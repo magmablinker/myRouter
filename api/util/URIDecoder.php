@@ -11,7 +11,6 @@
 class URIDecoder {
 
     private $route = null;
-    private $query = null;
 
     public function __construct($uri) {
         $slices = $this->decodeURI($uri);
@@ -21,12 +20,7 @@ class URIDecoder {
         if($length > 0) {
             $this->route = "";
             for($i = 0; $i < $length; $i++) {
-                if($length == 1 || $i < ($length - 1)) {
-                    $this->route .= "/" . $slices[$i];
-                } else {
-                    $this->query = $slices[$i];
-                }
-    
+                $this->route .= "/" . $slices[$i];
             }
         } else {
             $this->route = "/";

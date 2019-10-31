@@ -28,3 +28,13 @@ Route::multiple(["PUT", "POST"], "/foo", function(){
     print($_SERVER['REQUEST_METHOD']);
 });
 ```
+
+How do you add a route with parameters?
+```PHP
+# This will add a "GET" Route to the URI "api/user/{id}"
+# The parameter has to be a regex for what we're looking for
+# since the Route class matches the Route via regex
+Route::get("/user/([0-9]+)", function(){
+    # Do whatever you want with the route
+});
+```
