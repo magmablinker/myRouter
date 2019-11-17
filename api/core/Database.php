@@ -8,9 +8,8 @@ class Database {
     public static function getInstance() {
         if(!self::$instance) {
             self::$instance = new self();
-        } else {
-            return self::$instance;
-        }
+        } 
+        return self::$instance;
     }
 
     private function __construct() {
