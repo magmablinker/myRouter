@@ -1,6 +1,7 @@
 <?php
 
 abstract class Controller {
+    
     private static $RESPONSE_CODE;
 
     /*
@@ -33,12 +34,12 @@ abstract class Controller {
      *  Function that will return whatever it's supposed
      *  to return if the content-type is json
      */
+
     public static function json() {
         header(RouteConstants::CONTENT_TYPE_JSON);
         return array(
             "info" => array(
                 "route" => Route::$REQUEST_ROUTE->getRoute(),
-                "query" => Route::$REQUEST_ROUTE->getQuery(),
                 "controller" => "Controller"
             ),
             "data" => array(
