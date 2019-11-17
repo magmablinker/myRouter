@@ -34,11 +34,10 @@ class Route {
 
     public static function get($uri, $callback) {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+            self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_GET) {
-                self::$NOT_FOUND = false;
                 $callback();
             } else {
-                self::$NOT_FOUND = false;
                 DefaultHandler::invalidRequestMethod();
             }
         }
@@ -54,11 +53,10 @@ class Route {
 
     public static function post($uri, $callback) {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+            self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_POST) {
-                self::$NOT_FOUND = false;
                 $callback();
             } else {
-                self::$NOT_FOUND = false;
                 DefaultHandler::invalidRequestMethod();
             }
         }
@@ -74,11 +72,10 @@ class Route {
 
     public static function put($uri, $callback) {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+            self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_PUT) {
-                self::$NOT_FOUND = false;
                 $callback();
             } else {
-                self::$NOT_FOUND = false;
                 DefaultHandler::invalidRequestMethod();
             }
         }
@@ -94,11 +91,10 @@ class Route {
 
     public static function delete($uri, $callback) {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+            self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_DELETE) {
-                self::$NOT_FOUND = false;
                 $callback();
             } else {
-                self::$NOT_FOUND = false;
                 DefaultHandler::invalidRequestMethod();
             }
         }
@@ -131,11 +127,10 @@ class Route {
 
     public static function multiple($methods, $uri, $callback) {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+            self::$NOT_FOUND = false;
             if(Util::inArray($_SERVER['REQUEST_METHOD'], $methods)) {
-                self::$NOT_FOUND = false;
                 $callback();
             } else {
-                self::$NOT_FOUND = false;
                 DefaultHandler::invalidRequestMethod();
             }
         } 
