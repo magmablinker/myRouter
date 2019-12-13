@@ -43,3 +43,35 @@ Route::get("/user/([0-9]+)", function(){
     # Do whatever you want with the route
 });
 ```
+
+I also added two classes to manage sessions and database connections. They work like following.
+##### Session
+```PHP
+# This will get the instance of the session class
+$session = Session::getInstance();
+
+# If you want to set a new session variable
+# you have to do it like this:
+$session->setSessionVar("key", "value");
+
+# If you want to get a session variable
+# the following code will do it for you
+# this will return "value" from the 
+# newly added session variable
+$session->getSessionVar("key");
+
+# If you want to destroy the session 
+# you have to do it like this:
+$session->destroy();
+```
+##### Database
+To work with the database class you have to adjust the constants in the config file accordingly to your needs
+```PHP
+# This will get the instance of the database class
+# we'll directly pull the connection var out of that class
+# with the following code:
+$conn = Database::getInstance()->getConn(); 
+
+# Now you can use the conn like you're used to
+# since it's a mysqli object instance
+```

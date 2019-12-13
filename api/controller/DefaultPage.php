@@ -9,7 +9,7 @@ class DefaultPage extends Controller {
     public static function json() {
         return View::json(array(
             "info" => array(
-                "route" => Route::$REQUEST_ROUTE->getRoute(),
+                "route" => Route::$REQUEST_ROUTE,
                 "controller" => get_class() . " Controller"
             ),
             "data" => array(

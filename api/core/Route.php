@@ -4,7 +4,6 @@
  *
  * @author pmma_
  * @date 04.10.2019
- * @version 0.0.2
  * 
  */
 
