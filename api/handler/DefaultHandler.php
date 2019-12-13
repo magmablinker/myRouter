@@ -9,20 +9,18 @@ class DefaultHandler {
 
     public static function invalidRequestMethod() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_INVALID_REQUEST_METHOD);
-        print(json_encode(array(
+        return array(
             "httpResponseCode" => HttpResponseCodes::HTTP_INVALID_REQUEST_METHOD,
             "message" => "Invalid method for this route"
-        )));
-        die();
+        );
     }
 
     public static function routeNotFound() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_NOT_FOUND);
-        print(json_encode(array(
+        return array(
             "httpResponseCode" => HttpResponseCodes::HTTP_NOT_FOUND,
             "message" => "The requested route has not been found."
-        )));
-        die();
+        );
     }
 
     public static function badRequest($message = null) {
@@ -30,13 +28,28 @@ class DefaultHandler {
 
         $message = ($message != null) ? $message : "No further information";
 
-        print(json_encode([
+        return [
             "httpResponse" => "Bad Request",
             "message" => $message
-        ]));
-        die();
+        ];
     }
 
+    public static function unableToProccessRequest() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR);
+        return [
+            "httpResponseCode" => HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR,
+            "message" => "Unable to proccess the request. Try again later"
+        ];
+    }
+
+    public static function unauthorizedAccess() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_UNAUTHORIZED);
+        return [
+            "httpResponseCode" => HttpResponseCodes::HTTP_UNAUTHORIZED,
+            "message" => "Unauthorized access."
+        ];
+    }
+ 
 }
 
 ?>
