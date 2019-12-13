@@ -32,6 +32,19 @@ class Session {
         return self::$instance;
     }
 
+    private function __construct() {
+        session_start();
+
+        if(isset($_SESSION["EXPIRES"])) {
+            if($this->isExpired()) {
+                $this->regenerateSession();
+            }
+        } else {
+            $this->regenerateSession();
+        }
+        
+    }
+
     /*
      * Function to destroy the session
      */
@@ -90,19 +103,6 @@ class Session {
         return $isValid;
     }
 
-    private function __construct() {
-        session_start();
-
-        if(isset($_SESSION["EXPIRES"])) {
-            if($this->isExpired()) {
-                $this->regenerateSession();
-            }
-        } else {
-            $this->regenerateSession();
-        }
-        
-    }
-
     /*
      * Function that checks if the session has expired
      */
@@ -118,7 +118,7 @@ class Session {
         $_SESSION["EXPIRES"] = time() + (60 * Config::SESSION_EXPIRES);
         $_SESSION["IP_ADDR"] = $_SERVER['REMOTE_ADDR'];
         $_SESSION["USER_AGENT"] = $_SERVER['HTTP_USER_AGENT'];
-    }
+    }§
 
 }
 
