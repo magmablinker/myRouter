@@ -118,7 +118,7 @@ class Session {
         $_SESSION["EXPIRES"] = time() + (60 * Config::SESSION_EXPIRES);
         $_SESSION["IP_ADDR"] = $_SERVER['REMOTE_ADDR'];
         $_SESSION["USER_AGENT"] = $_SERVER['HTTP_USER_AGENT'];
-    }§
+    }
 
 }
 
