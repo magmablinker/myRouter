@@ -2,15 +2,17 @@ myRouter basic documentation
 ======
 ### Initializing the router
 The Router has always to be initialized with the
-following include. If you don't want to use the
-autoloader you can initialize the router via the following function
-```php
-Route::build();
-```
+following include.
 ```php
 # Include the autoloader to dynamically load classes
 # and build the Route
 include("autoloader.php");
+```
+
+If you don't want to use the
+autoloader you can initialize the router via the following function
+```php
+Route::build();
 ```
 
 ### Adding routes
