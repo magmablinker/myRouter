@@ -20,7 +20,7 @@ class Route {
 
     public static function build() {
         if(self::$REQUEST_ROUTE === null) {
-            self::$REQUEST_ROUTE = new URIDecoder($_SERVER['REQUEST_URI']);
+            self::$REQUEST_ROUTE = $_SERVER['REQUEST_URI'];
         }
     }
 
@@ -33,7 +33,7 @@ class Route {
      */
 
     public static function get($uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_GET) {
                 $callback();
@@ -52,7 +52,7 @@ class Route {
      */
 
     public static function post($uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_POST) {
                 $callback();
@@ -71,7 +71,7 @@ class Route {
      */
 
     public static function put($uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_PUT) {
                 $callback();
@@ -90,7 +90,7 @@ class Route {
      */
 
     public static function delete($uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_DELETE) {
                 $callback();
@@ -110,7 +110,7 @@ class Route {
      */
 
     public static function all($uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             $callback();
         }
@@ -126,7 +126,7 @@ class Route {
      */
 
     public static function multiple($methods, $uri, $callback) {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE->getRoute())) {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if(Util::inArray($_SERVER['REQUEST_METHOD'], $methods)) {
                 $callback();
