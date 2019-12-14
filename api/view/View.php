@@ -37,6 +37,7 @@ abstract class View {
     public static function json($json) {
         header(RouteConstants::CONTENT_TYPE_JSON);
         print(json_encode($json));
+        die();
     }
 
 }

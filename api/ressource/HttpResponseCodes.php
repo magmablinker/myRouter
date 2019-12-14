@@ -18,10 +18,13 @@ class HttpResponseCodes {
     const HTTP_FORBIDDEN = 403;
     const HTTP_NOT_FOUND = 404;
     const HTTP_INVALID_REQUEST_METHOD = 405;
+    const HTTP_RATE_LIMIT = 429;
 
     # Not OK (server error)
     const HTTP_INTERNAL_SERVER_ERROR = 500;
+    const HTTP_NOT_IMPLEMENTED = 501;
     const HTTP_BAD_GATEWAY = 502;
+    const HTTP_SERVICE_UNAVAILABLE = 503;
     
 }
 

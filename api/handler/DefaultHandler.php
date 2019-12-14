@@ -9,18 +9,16 @@ class DefaultHandler {
 
     public static function invalidRequestMethod() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_INVALID_REQUEST_METHOD);
-        return array(
-            "httpResponseCode" => HttpResponseCodes::HTTP_INVALID_REQUEST_METHOD,
+        return [
             "message" => "Invalid method for this route"
-        );
+        ];
     }
 
     public static function routeNotFound() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_NOT_FOUND);
-        return array(
-            "httpResponseCode" => HttpResponseCodes::HTTP_NOT_FOUND,
+        return [
             "message" => "The requested route has not been found."
-        );
+        ];
     }
 
     public static function badRequest($message = null) {
@@ -37,7 +35,6 @@ class DefaultHandler {
     public static function unableToProccessRequest() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR);
         return [
-            "httpResponseCode" => HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR,
             "message" => "Unable to proccess the request. Try again later"
         ];
     }
@@ -45,8 +42,14 @@ class DefaultHandler {
     public static function unauthorizedAccess() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_UNAUTHORIZED);
         return [
-            "httpResponseCode" => HttpResponseCodes::HTTP_UNAUTHORIZED,
             "message" => "Unauthorized access."
+        ];
+    }
+
+    public static function rateLimit() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_RATE_LIMIT);
+        return [
+            "message" => "Too many requests, the max. allowed requests per second are " . Config::MAX_REQUESTS_SECOND
         ];
     }
  

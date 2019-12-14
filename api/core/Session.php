@@ -38,12 +38,16 @@ class Session {
         session_start();
 
         if(isset($_SESSION["EXPIRES"])) {
-            if($this->validateSession()) {
-                if($this->isExpired()) {
-                    $this->regenerateSession();
+            if(!$this->isRateLimit()) {
+                if($this->validateSession()) {
+                    if($this->isExpired()) {
+                        $this->regenerateSession();
+                    }
+                } else {
+                    View::json(DefaultHandler::unauthorizedAccess());
                 }
             } else {
-                View::json(DefaultHandler::unauthorizedAccess());
+                View::json(DefaultHandler::rateLimit());
             }
         } else {
             $this->regenerateSession();
@@ -118,6 +122,30 @@ class Session {
     }
 
     /*
+     * Function to check if the rate limit has been exceeded
+     */
+
+    private function isRateLimit() : bool {
+        $isRateLimit = false;
+
+        $rateLimit = $this->getSessionVar("RATE_LIMIT");
+        $time = time();
+
+        # Check if variable is set
+        if($rateLimit) {
+            if(($time - $rateLimit) <= Config::MAX_REQUESTS_SECOND) {
+                $isRateLimit = true;
+            } else {
+                $this->setSessionVar("RATE_LIMIT", time());
+            }
+        } else {
+            $this->setSessionVar("RATE_LIMIT", time());
+        }
+
+        return $isRateLimit;
+    }
+
+    /*
      * Function that checks if the session has expired
      */
 
@@ -128,7 +156,7 @@ class Session {
     /*
      * Function to regenerate the session
      */
-    
+
     private function regenerateSession() : void {
         session_regenerate_id();
         $_SESSION["EXPIRES"] = time() + (60 * Config::SESSION_EXPIRES);

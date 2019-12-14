@@ -7,10 +7,12 @@ class DefaultPage extends Controller {
      * information about your api
      */
     public static function json() {
+        $session = Session::getInstance();
         return View::json(array(
             "info" => array(
                 "route" => Route::$REQUEST_ROUTE,
-                "controller" => get_class() . " Controller"
+                "controller" => get_class() . " Controller",
+                "rate limit" => $session->getSessionVar("RATE_LIMIT")
             ),
             "data" => array(
                 "appName" => Config::APP_NAME,

@@ -139,6 +139,7 @@ class Route {
      * The default function that gets called
      * when the requested Route has not been found
      */
+    
     public static function notFound() : void {
         if(self::$NOT_FOUND) {
             DefaultHandler::routeNotFound();
