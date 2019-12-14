@@ -5,7 +5,7 @@ class Database {
     private static $instance;
     private $conn;
    
-    public static function getInstance() {
+    public static function getInstance() : Database {
         if(!self::$instance) {
             self::$instance = new self();
         } 
@@ -20,7 +20,7 @@ class Database {
         }
     }
 
-    public function getConn() {
+    public function getConn() : mysqli {
         return $this->conn;
     }
 

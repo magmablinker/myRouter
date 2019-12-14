@@ -10,7 +10,7 @@ abstract class Controller {
      * @param $reponseCode the response code
      */
 
-    public static function setResponseCode($responseCode) {
+    public static function setResponseCode(int $responseCode) : void {
         header(RouteConstants::CONTENT_TYPE_JSON);
         http_response_code($responseCode);
         self::$RESPONSE_CODE = $responseCode;
@@ -20,8 +20,8 @@ abstract class Controller {
      * Function that will return whatever it's supposed
      * to return if the content-type is html
      */
-    
-    public static function html() {
+
+    public static function html() : void {
         header(RouteConstants::CONTENT_TYPE_TEXT);
         $backtrace = debug_backtrace();
         $backtrace = isset($backtrace[1]) ? $backtrace[1]['class'] : $backtrace[0]['class'];
@@ -34,7 +34,7 @@ abstract class Controller {
      *  to return if the content-type is json
      */
 
-    public static function json() {
+    public static function json() : void {
         header(RouteConstants::CONTENT_TYPE_JSON);
         return array(
             "info" => array(
