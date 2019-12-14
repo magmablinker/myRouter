@@ -36,8 +36,12 @@ class Session {
         session_start();
 
         if(isset($_SESSION["EXPIRES"])) {
-            if($this->isExpired()) {
-                $this->regenerateSession();
+            if($this->validateSession()) {
+                if($this->isExpired()) {
+                    $this->regenerateSession();
+                }
+            } else {
+                View::json(DefaultHandler::unauthorizedAccess());
             }
         } else {
             $this->regenerateSession();
@@ -65,6 +69,8 @@ class Session {
 
         if($this->validateSession()) {
             $retval = (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
+        } else {
+            View::json(DefaultHandler::unauthorizedAccess());
         }
 
         return $retval;
@@ -79,6 +85,8 @@ class Session {
     public function setSessionVar(string $name, $var) : void {
         if($this->validateSession()) {
             $_SESSION[$name] = $var;
+        } else {
+            View::json(DefaultHandler::unauthorizedAccess());
         }
     }
 
