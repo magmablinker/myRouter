@@ -37,7 +37,7 @@ class Session {
     private function __construct() {
         session_start();
 
-        if(isset($_SESSION["EXPIRES"])) {
+        if($this->getSessionVar("EXPIRES")) {
             if(!$this->isRateLimit()) {
                 if($this->validateSession()) {
                     if($this->isExpired()) {
@@ -96,9 +96,9 @@ class Session {
     private function validateSession() : bool {
         $isValid = true;
 
-        if($_SESSION['IP_ADDR'] != $_SERVER['REMOTE_ADDR']) {
+        if($this->getSessionVar('IP_ADDR') != $_SERVER['REMOTE_ADDR']) {
             $isValid = false;
-        } elseif($_SESSION['USER_AGENT'] != $_SERVER['HTTP_USER_AGENT']) {
+        } elseif($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']) {
             $isValid = false;
         } else {
             if($this->isExpired()) {
