@@ -17,7 +17,7 @@ class Route {
      * assign static variables dynamically in php
      */
 
-    public static function build() {
+    public static function build() : void {
         if(self::$REQUEST_ROUTE === null) {
             self::$REQUEST_ROUTE = $_SERVER['REQUEST_URI'];
         }
@@ -31,7 +31,7 @@ class Route {
      * 
      */
 
-    public static function get($uri, $callback) {
+    public static function get(string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_GET) {
@@ -50,7 +50,7 @@ class Route {
      * 
      */
 
-    public static function post($uri, $callback) {
+    public static function post(string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_POST) {
@@ -69,7 +69,7 @@ class Route {
      * 
      */
 
-    public static function put($uri, $callback) {
+    public static function put(string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_PUT) {
@@ -88,7 +88,7 @@ class Route {
      * 
      */
 
-    public static function delete($uri, $callback) {
+    public static function delete(string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_DELETE) {
@@ -108,7 +108,7 @@ class Route {
      * 
      */
 
-    public static function all($uri, $callback) {
+    public static function all(string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             $callback();
@@ -124,7 +124,7 @@ class Route {
      * 
      */
 
-    public static function multiple($methods, $uri, $callback) {
+    public static function multiple(array $methods, string $uri, $callback) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
             if(Util::inArray($_SERVER['REQUEST_METHOD'], $methods)) {
@@ -139,7 +139,7 @@ class Route {
      * The default function that gets called
      * when the requested Route has not been found
      */
-    public static function notFound() {
+    public static function notFound() : void {
         if(self::$NOT_FOUND) {
             DefaultHandler::routeNotFound();
         }
