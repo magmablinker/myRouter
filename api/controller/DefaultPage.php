@@ -23,23 +23,6 @@ class DefaultPage extends Controller {
                             "ALL"
                         ),
                         "authenticationRequired" => false
-                    ),
-                    "exampleRoute" => array(
-                        "contentType" => RouteConstants::CONTENT_TYPE_JSON,
-                        "info" => "GET: returns html page view - POST: returns json",
-                        "allowedMethods" => array(
-                            "GET",
-                            "POST"
-                        ),
-                        "authenticationRequired" => false
-                    ),
-                    "otherRoute" => array(
-                        "contentType" => RouteConstants::CONTENT_TYPE_TEXT,
-                        "info" => "returns the otherPage view",
-                        "allowedMethods" => array(
-                            "GET"
-                        ),
-                        "authenticationRequired" => false
                     )
                 ),
             )

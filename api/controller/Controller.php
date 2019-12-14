@@ -5,8 +5,7 @@ abstract class Controller {
     private static $RESPONSE_CODE;
 
     /*
-     * Function to set the http_response code if it's anything
-     * else than 200
+     * Function to set the http_response code
      * 
      * @param $reponseCode the response code
      */
@@ -21,7 +20,7 @@ abstract class Controller {
      * Function that will return whatever it's supposed
      * to return if the content-type is html
      */
-
+    
     public static function html() {
         header(RouteConstants::CONTENT_TYPE_TEXT);
         $backtrace = debug_backtrace();

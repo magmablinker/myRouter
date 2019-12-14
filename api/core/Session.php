@@ -16,6 +16,7 @@ class Session {
     /*
      * @var $instance the Session object
      */
+
     private static $instance = null;
 
     /*
@@ -24,6 +25,7 @@ class Session {
      * 
      * returns Session instance
      */
+
     public static function getInstance() : Session {
         if(!self::$instance) {
             self::$instance = new self();
@@ -52,6 +54,7 @@ class Session {
     /*
      * Function to destroy the session
      */
+
     public function destroy() : void {
         $_SESSION = [];
         session_unset();
@@ -64,6 +67,7 @@ class Session {
      * 
      * @param string name the name of the variable
      */
+
     public function getSessionVar(string $name) {
         $retval = "Unauthorized";
 
@@ -82,6 +86,7 @@ class Session {
      * @param string $name the name (key) of the variable
      * @param mixed $var the value of the variable
      */
+
     public function setSessionVar(string $name, $var) : void {
         if($this->validateSession()) {
             $_SESSION[$name] = $var;
@@ -95,6 +100,7 @@ class Session {
      * by matching the server remote addr and user agent
      * with the ones that are saved in the session
      */
+
     private function validateSession() : bool {
         $isValid = true;
 
@@ -114,6 +120,7 @@ class Session {
     /*
      * Function that checks if the session has expired
      */
+
     private function isExpired() : bool {
         return $_SESSION["EXPIRES"] < time();
     }
@@ -121,6 +128,7 @@ class Session {
     /*
      * Function to regenerate the session
      */
+    
     private function regenerateSession() : void {
         session_regenerate_id();
         $_SESSION["EXPIRES"] = time() + (60 * Config::SESSION_EXPIRES);
