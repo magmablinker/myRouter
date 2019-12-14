@@ -39,7 +39,7 @@ abstract class Controller {
         header(RouteConstants::CONTENT_TYPE_JSON);
         return array(
             "info" => array(
-                "route" => Route::$REQUEST_ROUTE->getRoute(),
+                "route" => Route::$REQUEST_ROUTE,
                 "controller" => "Controller"
             ),
             "data" => array(
