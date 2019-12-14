@@ -49,7 +49,7 @@ class DefaultHandler {
     public static function rateLimit() {
         Controller::setResponseCode(HttpResponseCodes::HTTP_RATE_LIMIT);
         return [
-            "message" => "Too many requests, the max. allowed requests per second are " . Config::MAX_REQUESTS_SECOND
+            "message" => sprintf("Too many requests, the max. is one request per %d seconds", Config::MAX_REQUESTS_SECOND)
         ];
     }
  
