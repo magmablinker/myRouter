@@ -10,16 +10,16 @@ class Util {
     /*
      * This function basically does what in_array() does
      *  
-     * @param $string the string which we have to search 
+     * @param $search the string which we have to search 
      * for in the array
-     * @param $array the array in which we will search $string
+     * @param $array the array in which we will search $search
      */
 
-    public static function inArray($string, $array) {
+    public static function inArray(string $search, array $array) : bool {
         $isInArray = false;
     
         foreach($array as $item) {
-            if($string == $item) {
+            if($search == $item) {
                 $isInArray = true;
                 break;
             }
