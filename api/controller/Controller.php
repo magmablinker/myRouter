@@ -21,7 +21,7 @@ abstract class Controller {
      * to return if the content-type is html
      */
 
-    public static function html() : void {
+    public static function html() {
         header(RouteConstants::CONTENT_TYPE_TEXT);
         $backtrace = debug_backtrace();
         $backtrace = isset($backtrace[1]) ? $backtrace[1]['class'] : $backtrace[0]['class'];
@@ -34,7 +34,7 @@ abstract class Controller {
      *  to return if the content-type is json
      */
 
-    public static function json() : void {
+    public static function json() {
         header(RouteConstants::CONTENT_TYPE_JSON);
         return array(
             "info" => array(
