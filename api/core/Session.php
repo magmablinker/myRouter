@@ -14,7 +14,7 @@
 class Session {
 
     /*
-     * @var $instance the Session object
+     * @var $instance the Session object instance
      */
 
     private static $instance = null;

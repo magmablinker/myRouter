@@ -4,7 +4,7 @@ class Config {
 
     /*
      * This config class has to be adjusted
-     * depending on your applcation
+     * depending on your application
      */
 
     # Basic configuration
