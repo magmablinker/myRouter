@@ -73,15 +73,7 @@ class Session {
      */
 
     public function getSessionVar(string $name) {
-        $retval = "Unauthorized";
-
-        if($this->validateSession()) {
-            $retval = (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
-        } else {
-            View::json(DefaultHandler::unauthorizedAccess());
-        }
-
-        return $retval;
+        return (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
     }
 
     /*
@@ -92,11 +84,7 @@ class Session {
      */
 
     public function setSessionVar(string $name, $var) : void {
-        if($this->validateSession()) {
-            $_SESSION[$name] = $var;
-        } else {
-            View::json(DefaultHandler::unauthorizedAccess());
-        }
+         $_SESSION[$name] = $var;
     }
 
     /*
@@ -149,7 +137,7 @@ class Session {
      */
 
     private function isExpired() : bool {
-        return $_SESSION["EXPIRES"] < time();
+        return $this->getSessionVar("EXPIRES") < time();
     }
 
     /*
@@ -158,9 +146,9 @@ class Session {
 
     private function regenerateSession() : void {
         session_regenerate_id();
-        $_SESSION["EXPIRES"] = time() + (60 * Config::SESSION_EXPIRES);
-        $_SESSION["IP_ADDR"] = $_SERVER['REMOTE_ADDR'];
-        $_SESSION["USER_AGENT"] = $_SERVER['HTTP_USER_AGENT'];
+        $this->setSessionVar("EXPIRES", time() + (60 * Config::SESSION_EXPIRES));
+        $this->setSessionVar("IP_ADDR", $_SERVER['REMOTE_ADDR']);
+        $this->setSessionVar("USER_AGENT", $_SERVER['HTTP_USER_AGENT']);
     }
 
 }
