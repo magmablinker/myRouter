@@ -129,11 +129,10 @@ class Session {
         $isRateLimit = false;
 
         $rateLimit = $this->getSessionVar("RATE_LIMIT");
-        $time = time();
 
         # Check if variable is set
         if($rateLimit) {
-            if(($time - $rateLimit) <= Config::MAX_REQUESTS_SECOND) {
+            if(abs($rateLimit - time()) < Config::MAX_REQUESTS_SECOND) {
                 $isRateLimit = true;
             } else {
                 $this->setSessionVar("RATE_LIMIT", time());
