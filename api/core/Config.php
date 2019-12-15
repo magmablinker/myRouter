@@ -13,6 +13,7 @@ class Config {
     const APP_VERSION = "0.0.3";
     const SESSION_EXPIRES = 15; # The value is in minutes
     const MAX_REQUESTS_SECOND = 1; # The treshold for requests in seconds
+    const FORCE_HTTPS = false;
 
     # Database configuration
     const DB_HOST = null;

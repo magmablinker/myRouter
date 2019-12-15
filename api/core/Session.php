@@ -37,6 +37,13 @@ class Session {
     private function __construct() {
         session_start();
 
+        if(Config::FORCE_HTTPS) {
+            if(!$this->isSecure()) {
+                $requestUrl = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                header(sprintf("Location: https://%s", $requestUrl));
+            }
+        }
+
         if($this->getSessionVar("EXPIRES")) {
             if(!$this->isRateLimit()) {
                 if($this->validateSession()) {
@@ -149,6 +156,16 @@ class Session {
         $this->setSessionVar("EXPIRES", time() + (60 * Config::SESSION_EXPIRES));
         $this->setSessionVar("IP_ADDR", $_SERVER['REMOTE_ADDR']);
         $this->setSessionVar("USER_AGENT", $_SERVER['HTTP_USER_AGENT']);
+    }
+
+    /*
+     * Returns whether the user is using https or not
+     */
+
+    private function isSecure() : bool {
+        return
+            (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || $_SERVER['SERVER_PORT'] == 443;
     }
 
 }
