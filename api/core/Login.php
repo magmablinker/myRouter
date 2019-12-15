@@ -2,10 +2,34 @@
 
 class Login {
 
+    /*
+     * @var $session Session
+     */
+    
     private $session;
+
+    /*
+     * @var $conn mysqli
+     */
+
     private $conn;
+    
+    /*
+     * @var $username string
+     */
+
     private $username;
+    
+    /*
+     * @var $password string
+     */
+
     private $password;
+
+    /*
+     * @var $hash string
+     */
+
     private $hash;
 
     /*
@@ -34,6 +58,12 @@ class Login {
 
     }
 
+    /*
+     * This function will check if a user with the
+     * supplied username exists and verify that the 
+     * supplied password matches the hash in the database
+     */
+
     public function isLoginValid() : bool {
         $isValid = false;
 
@@ -46,6 +76,11 @@ class Login {
 
         return $isValid;
     }
+
+    /*
+     * This function checks if the user supplied a valid
+     * username and saves the hash into the hash class variable
+     */
 
     private function userExists() : bool {
         $exists = false;

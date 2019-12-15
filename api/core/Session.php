@@ -61,6 +61,10 @@ class Session {
         
     }
 
+    /*
+     * Function to check if the user is logged in
+     */
+
     public function isLoggedIn() : bool {
         return $this->getSessionVar("isLogged");
     }
