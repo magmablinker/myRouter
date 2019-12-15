@@ -141,8 +141,8 @@ class Route {
      */
     
     public static function notFound() : void {
-        if(self::$NOT_FOUND) {
-            DefaultHandler::routeNotFound();
+        if(self::$NOT_FOUND && !defined("DONT_CALL_SHUTDOWN_FUNCTION")) {
+            View::json(DefaultHandler::routeNotFound());
         }
     }
 
