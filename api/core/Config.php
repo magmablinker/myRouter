@@ -21,6 +21,11 @@ class Config {
     const DB_USER = null;
     const DB_PASSWORD = null;
 
+    # Login configuration
+    const DB_USER_TABLE = null; # e.g "tUser"
+    const DB_USERNAME_ROW = null; # e.g "username"
+    const DB_PASSWORD_ROW = null; # e.g "password"
+
 }
 
 ?>

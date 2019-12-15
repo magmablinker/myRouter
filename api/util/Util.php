@@ -28,6 +28,21 @@ class Util {
         return $isInArray;
     }
 
+    /*
+     * This function sanitizes a string if a mysqli object gets passed in
+     * the string will also be database safe
+     * 
+     * @param $var string the variable
+     * @param $conn mysqli the database connection (optional)
+     */
+
+    public static function sanitizeString(string $var, mysqli $conn = null) : string {
+        if($conn)
+            return htmlspecialchars($conn->real_escape_string($var));
+        else
+            return htmlspecialchars($var);
+    }
+
 }
 
 ?>

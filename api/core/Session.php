@@ -39,8 +39,7 @@ class Session {
 
         if(Config::FORCE_HTTPS) {
             if(!$this->isSecure()) {
-                $requestUrl = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                header(sprintf("Location: https://%s", $requestUrl));
+                header(sprintf("Location: https://%s%s", $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']));
             }
         }
 
@@ -60,6 +59,10 @@ class Session {
             $this->regenerateSession();
         }
         
+    }
+
+    public function isLoggedIn() : bool {
+        return $this->getSessionVar("isLogged");
     }
 
     /*

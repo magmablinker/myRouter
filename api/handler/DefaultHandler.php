@@ -52,6 +52,20 @@ class DefaultHandler {
             "message" => sprintf("Too many requests, the max. is one request per %d seconds", Config::MAX_REQUESTS_SECOND)
         ];
     }
+
+    public static function databaseMissingCredentials() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR);
+        return [
+            "message" => "Please adjust the database constants in the config file to use this functionality."
+        ];
+    }
+
+    public static function loginMissingConfiguration() {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_INTERNAL_SERVER_ERROR);
+        return [
+            "message" => "Please adjust the login related constants in the config file to use this functionality"
+        ];
+    }
  
 }
 

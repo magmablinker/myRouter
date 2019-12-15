@@ -44,7 +44,7 @@ Route::get("/user/([0-9]+)", function(){
 });
 ```
 
-I also added two classes to manage sessions and database connections. They work like following.
+I also added three classes to manage sessions, database connections and login. They work like following.
 ##### Session
 ```PHP
 # This will get the instance of the session class
@@ -74,4 +74,34 @@ $conn = Database::getInstance()->getConn();
 
 # Now you can use the conn like you're used to
 # since it's a mysqli object instance
+```
+##### Login
+To work with the login class you have to adjust the constants in the config file accordingly to your needs
+```PHP
+# Initialize the instance of the login class
+# the username will be sanitized
+# within the login class so you don't have to
+# worry about that
+$login = new Login("username", "password");
+
+# To check if the user has supplied a valid
+# username/password combination use the following function
+if($login->isLoginValid()) {
+    # the session variable "isLogged" got set to true
+    # display a success message
+} else {
+    # display an error message
+}
+
+# If you want to check on auth only pages
+# if the user is logged in you have to use
+# the corresponding function in the session class
+$session = Session::getInstance();
+
+if($session->isLoggedIn()) {
+    # the user is logged in all good
+} else {
+    # block the user from viewing the content
+}
+
 ```
