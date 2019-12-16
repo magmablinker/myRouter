@@ -29,7 +29,6 @@ class Cookie {
      */
 
     public static function getCookie(string $name) {
-        var_dump($_COOKIE);
         return $_COOKIE[$name];
     }
 
