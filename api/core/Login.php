@@ -1,5 +1,16 @@
 <?php
 
+/*
+ *
+ * @author pmma_
+ * @date 1.12.2019
+ * 
+ * This is the class
+ * which will enable you
+ * easier login implementation
+ * 
+ */
+
 class Login {
 
     /*
