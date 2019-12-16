@@ -22,7 +22,7 @@ class Database {
     private function __construct() {
         $this->conn = new mysqli(Config::DB_HOST, Config::DB_USER, Config::DB_PASSWORD, Config::DB_DATABASE);
 
-        if($this->conn->error) {
+        if($this->conn->connect_errno) {
             View::json(DefaultHandler::databaseMissingCredentials());
         }
     }

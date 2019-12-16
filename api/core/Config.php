@@ -17,7 +17,7 @@ class Config {
 
     # Database configuration
     const DB_HOST = null;
-    const DB_DATABASE = null;
+    const DB_DATABASE = "y";
     const DB_USER = null;
     const DB_PASSWORD = null;
 
