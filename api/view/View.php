@@ -10,6 +10,7 @@ abstract class View {
      * 
      * @param $text the text that will be rendered
      */
+    
     public static function render($text) {
         print(sprintf(
             '<!DOCTYPE html>
@@ -34,10 +35,11 @@ abstract class View {
      * 
      * @param $json the json that will be printed
      */
+
     public static function json($json) {
+        Route::setNotFound(false);
         header(RouteConstants::CONTENT_TYPE_JSON);
         print(json_encode($json));
-        define("DONT_CALL_SHUTDOWN_FUNCTION", true);
         die();
     }
 

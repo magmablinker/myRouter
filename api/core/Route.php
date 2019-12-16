@@ -9,7 +9,16 @@
 
 class Route {
 
-    public static $REQUEST_ROUTE = null;
+    /*
+     * @var $REQUEST_ROUTE string the request route
+     */
+    
+    private static $REQUEST_ROUTE = null;
+
+    /*
+     * @var $NOT_FOUND bool is to check if the requested route exists
+     */
+
     private static $NOT_FOUND = true;
     
     /* 
@@ -141,9 +150,27 @@ class Route {
      */
     
     public static function notFound() : void {
-        if(self::$NOT_FOUND && !defined("DONT_CALL_SHUTDOWN_FUNCTION")) {
+        if(self::$NOT_FOUND) {
             View::json(DefaultHandler::routeNotFound());
         }
+    }
+
+    /*
+     * Setter for the variable $NOT_FOUND
+     * 
+     * @param $notFound bool
+     */
+
+    public static function setNotFound(bool $notFound) : void {
+        self::$NOT_FOUND = $notFound;
+    }
+
+    /*
+     * Getter for the request route
+     */
+
+    public static function getRequestRoute() : string {
+        return self::$REQUEST_ROUTE;
     }
 
 }
