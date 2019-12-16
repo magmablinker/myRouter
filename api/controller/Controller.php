@@ -37,7 +37,9 @@ abstract class Controller {
         $backtrace = debug_backtrace();
         $backtrace = isset($backtrace[1]) ? $backtrace[1]['class'] : $backtrace[0]['class'];
 
-        return View::render("<strong>Error:</strong> please override the html function in the controller " . $backtrace);
+        View::json([
+            "message" => "Please override this method in the controller " . $backtrace
+        ]);
     }
 
     /*
