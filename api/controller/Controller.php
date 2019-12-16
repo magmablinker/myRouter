@@ -1,13 +1,24 @@
 <?php
 
+/*
+ *
+ * @author pmma_
+ * @date 04.10.2019
+ * 
+ */
+
 abstract class Controller {
     
+    /*
+     * @var $RESPONSE_CODE int the http response code 
+     */
+
     private static $RESPONSE_CODE;
 
     /*
-     * Function to set the http_response code
+     * Function to set the http response code
      * 
-     * @param $reponseCode the response code
+     * @param $reponseCode int the response code
      */
 
     public static function setResponseCode(int $responseCode) : void {

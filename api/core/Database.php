@@ -1,7 +1,14 @@
 <?php
 
-class Database {
+/*
+ *
+ * @author pmma_
+ * @date 04.10.2019
+ * 
+ */
 
+class Database {
+    
     private static $instance;
     private $conn;
    
@@ -16,7 +23,7 @@ class Database {
         $this->conn = new mysqli(Config::DB_HOST, Config::DB_USER, Config::DB_PASSWORD, Config::DB_DATABASE);
 
         if($this->conn->error) {
-            trigger_error("Failed to connect to MySQL: " . $this->conn->error, E_USER_ERROR);
+            View::json(DefaultHandler::databaseMissingCredentials());
         }
     }
 

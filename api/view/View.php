@@ -1,5 +1,12 @@
 <?php
 
+/*
+ *
+ * @author pmma_
+ * @date 04.10.2019
+ * 
+ */
+
 abstract class View {
 
     /*
