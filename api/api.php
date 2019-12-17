@@ -4,7 +4,12 @@ include("autoloader.php");
 
 $session = Session::getInstance();
 
-Route::all("/", function(){
+Route::get("/", function() {
+    include("views/index.html");
+    die();
+});
+
+Route::all("/api", function(){
     return DefaultPage::json();
 });
 
