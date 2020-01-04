@@ -112,12 +112,8 @@ class Session {
 
         if($this->getSessionVar('IP_ADDR') != $_SERVER['REMOTE_ADDR']) {
             $isValid = false;
-        } elseif($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']) {
+        } else if($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']) {
             $isValid = false;
-        } else {
-            if($this->isExpired()) {
-                $this->regenerateSession();
-            }
         }
 
         return $isValid;
