@@ -43,20 +43,20 @@ class Session {
             }
         }
 
-        if($this->getSessionVar("EXPIRES")) {
-            if(!$this->isRateLimit()) {
-                if($this->validateSession()) {
+        if($this->validateSession()) {
+            if($this->getSessionVar("EXPIRES")) {
+                if(!$this->isRateLimit()) {
                     if($this->isExpired()) {
                         $this->regenerateSession();
                     }
                 } else {
-                    View::json(DefaultHandler::unauthorizedAccess());
+                    View::json(DefaultHandler::rateLimit());
                 }
             } else {
-                View::json(DefaultHandler::rateLimit());
+                $this->regenerateSession();
             }
         } else {
-            $this->regenerateSession();
+            View::json(DefaultHandler::unauthorizedAccess());
         }
         
     }
