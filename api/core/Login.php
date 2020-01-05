@@ -1,9 +1,9 @@
 <?php
 
-/*
+/**
  *
  * @author pmma_
- * @date 1.12.2019
+ * @since 1.12.2019
  * 
  * This is the class
  * which will enable you
@@ -13,41 +13,41 @@
 
 class Login {
 
-    /*
-     * @var $session Session
+    /**
+     * @var Session
      */
     
     private $session;
 
-    /*
-     * @var $conn mysqli
+    /**
+     * @var mysqli
      */
 
     private $conn;
     
-    /*
-     * @var $username string
+    /**
+     * @var string
      */
 
     private $username;
     
-    /*
-     * @var $password string
+    /**
+     * @var string
      */
 
     private $password;
 
-    /*
-     * @var $hash string
+    /**
+     * @var string
      */
 
     private $hash;
 
-    /*
+    /**
      * The constructor
      * 
-     * @param $username string the username
-     * @param $password string the password
+     * @param string $username the username
+     * @param string $password the password
      */
 
     public function __construct(string $username, string $password) {
@@ -69,10 +69,12 @@ class Login {
 
     }
 
-    /*
+    /**
      * This function will check if a user with the
      * supplied username exists and verify that the 
      * supplied password matches the hash in the database
+     * 
+     * @return bool is the login valid?
      */
 
     public function isLoginValid() : bool {
@@ -88,9 +90,11 @@ class Login {
         return $isValid;
     }
 
-    /*
+    /**
      * This function checks if the user supplied a valid
      * username and saves the hash into the hash class variable
+     * 
+     * @return bool does the username $username exist in the database?      
      */
 
     private function userExists() : bool {

@@ -13,17 +13,17 @@
 
 class Session {
 
-    /*
+    /**
      * @var $instance the Session object instance
      */
 
     private static $instance = null;
 
-    /*
+    /**
      * Function that returns the instance of the object
      * here to prevent multiple instances (singleton)
      * 
-     * returns Session instance
+     * @return Session the instance of the session object
      */
 
     public static function getInstance() : Session {
@@ -79,7 +79,7 @@ class Session {
         session_destroy();
     }
 
-    /*
+    /**
      * Function that returns the value of a session variable
      * if the session variable is set
      * 
@@ -90,7 +90,7 @@ class Session {
         return (isset($_SESSION[$name])) ? $_SESSION[$name] : false;
     }
 
-    /*
+    /**
      * Function to add a variable to the session
      * 
      * @param string $name the name (key) of the variable
@@ -101,26 +101,22 @@ class Session {
          $_SESSION[$name] = $var;
     }
 
-    /*
+    /**
      * Function that checks if the session is valid
      * by matching the server remote addr and user agent
      * with the ones that are saved in the session
+     * 
+     * @return bool is session valid?
      */
 
     private function validateSession() : bool {
-        $isValid = true;
-
-        if($this->getSessionVar('IP_ADDR') != $_SERVER['REMOTE_ADDR']) {
-            $isValid = false;
-        } else if($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']) {
-            $isValid = false;
-        }
-
-        return $isValid;
+        return !(($this->getSessionVar('IP_ADDR') != $_SERVER['REMOTE_ADDR']) || ($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']));
     }
 
-    /*
+    /**
      * Function to check if the rate limit has been exceeded
+     * 
+     * @return bool has the client reached rate limit?
      */
 
     private function isRateLimit() : bool {
@@ -142,8 +138,10 @@ class Session {
         return $isRateLimit;
     }
 
-    /*
+    /**
      * Function that checks if the session has expired
+     * 
+     * @return bool isSessionExpired
      */
 
     private function isExpired() : bool {
@@ -161,8 +159,8 @@ class Session {
         $this->setSessionVar("USER_AGENT", $_SERVER['HTTP_USER_AGENT']);
     }
 
-    /*
-     * Returns whether the user is using https or not
+    /**
+     * @return bool is the client using https or not?
      */
 
     private function isSecure() : bool {

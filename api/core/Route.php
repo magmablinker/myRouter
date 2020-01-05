@@ -1,22 +1,25 @@
 <?php
 
-/*
- *
+/**
+ * This is the central class in this project
+ * which manages the routes supplied by the api
+ * 
  * @author pmma_
- * @date 04.10.2019
+ * @since 04.10.2019
  * 
  */
 
 class Route {
 
-    /*
-     * @var $REQUEST_ROUTE string the request route
+    /**
+     * 
+     * @var string the request route ($_SERVER['REQUEST_URI'])
      */
     
     private static $REQUEST_ROUTE = null;
 
-    /*
-     * @var $NOT_FOUND bool is to check if the requested route exists
+    /**
+     * @var bool is to check at script termination if the route has been found
      */
 
     private static $NOT_FOUND = true;
@@ -32,11 +35,11 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for get routes
      * 
-     * @param $uri The requested route
-     * @param $callback The function that will be called
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called
      * 
      */
 
@@ -51,11 +54,11 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for post routes
      * 
-     * @param $uri The requested route
-     * @param $callback The function that will be called
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called
      * 
      */
 
@@ -70,11 +73,11 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for put routes
      * 
-     * @param $uri The requested route
-     * @param $callback The function that will be called
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called
      * 
      */
 
@@ -89,11 +92,11 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for delete routes
      * 
-     * @param $uri The requested route
-     * @param $callback The function that will be called
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called
      * 
      */
 
@@ -108,12 +111,11 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for all request methods
      * 
-     * @param $methods The allowed methods (array)
-     * @param $uri The requested route
-     * @param $callback The function that will be called 
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called 
      * 
      */
 
@@ -124,12 +126,12 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Default handler for multiple request methods
      * 
-     * @param $methods The allowed methods (array)
-     * @param $uri The requested route
-     * @param $callback The function that will be called 
+     * @param array $methods The allowed methods
+     * @param string $uri The requested route
+     * @param function $callback The function that will be called 
      * 
      */
 
@@ -155,18 +157,20 @@ class Route {
         }
     }
 
-    /*
+    /**
      * Setter for the variable $NOT_FOUND
      * 
-     * @param $notFound bool
+     * @param bool $notFound
      */
 
     public static function setNotFound(bool $notFound) : void {
         self::$NOT_FOUND = $notFound;
     }
 
-    /*
+    /**
      * Getter for the request route
+     * 
+     * @return string the request route
      */
 
     public static function getRequestRoute() : string {
