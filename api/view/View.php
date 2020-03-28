@@ -12,8 +12,6 @@ abstract class View {
     /**
      * Function that returns json text
      * to the client that made the request.
-     * You have to override this function in it's
-     * children.
      * 
      * @param json the json that will be printed
      */
@@ -22,6 +20,20 @@ abstract class View {
         Route::setNotFound(false); // Just to be sure
         header(RouteConstants::CONTENT_TYPE_JSON);
         print(json_encode($json));
+        die();
+    }
+
+    /**
+     * Function that returns a html or php file 
+     * 
+     * @param file the file that will be included
+     */
+
+    public static function html($file) {
+        Route::setNotFound(false); // Just to be sure
+        Controller::setResponseCode(HttpResponseCodes::HTTP_OK);
+        header(RouteConstants::CONTENT_TYPE_TEXT);
+        include($file);
         die();
     }
 

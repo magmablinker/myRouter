@@ -66,6 +66,19 @@ class DefaultHandler {
             "message" => "Please adjust the login related constants in the config file to use this functionality"
         ];
     }
+
+    public static function responseOk($message, $data = null) {
+        Controller::setResponseCode(HttpResponseCodes::HTTP_OK);
+        $response = [
+            "message" => $message
+        ];
+
+        if($data != null) {
+            $response['data'] = $data;
+        }
+
+        return $response;
+    }
  
 }
 
