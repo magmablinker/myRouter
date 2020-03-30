@@ -35,8 +35,30 @@ class Route {
         }
     }
 
+    
     /**
-     * Default handler for get routes
+     * Default method for matching routes
+     * 
+     * @param string $uri The requested route
+     * @param mixed $method, either a string or an array of allowed http methods
+     * @param function $callback The function that will be called
+     * 
+     */
+
+    private static function matchRoute(string $uri, $method, $callback) : void {
+        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
+            self::$NOT_FOUND = false;
+
+            if($_SERVER['REQUEST_METHOD'] === $method || ((is_array($method)) && in_array($_SERVER['REQUEST_METHOD'], $method))) {
+                $callback();
+            } else {
+                DefaultHandler::invalidRequestMethod();
+            }
+        }
+    }
+
+    /**
+     * Default helper method for GET routes
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
@@ -44,18 +66,11 @@ class Route {
      */
 
     public static function get(string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_GET) {
-                $callback();
-            } else {
-                DefaultHandler::invalidRequestMethod();
-            }
-        }
+        self::matchRoute($uri, RouteConstants::HTTP_GET, $callback);
     }
 
     /**
-     * Default handler for post routes
+     * Default helper method for post routes
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
@@ -63,18 +78,11 @@ class Route {
      */
 
     public static function post(string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_POST) {
-                $callback();
-            } else {
-                DefaultHandler::invalidRequestMethod();
-            }
-        }
+        self::matchRoute($uri, RouteConstants::HTTP_POST, $callback);
     }
 
     /**
-     * Default handler for put routes
+     * Default helper method for put routes
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
@@ -82,18 +90,11 @@ class Route {
      */
 
     public static function put(string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_PUT) {
-                $callback();
-            } else {
-                DefaultHandler::invalidRequestMethod();
-            }
-        }
+        self::matchRoute($uri, RouteConstants::HTTP_PUT, $callback);
     }
 
     /**
-     * Default handler for delete routes
+     * Default helper method for delete routes
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
@@ -101,18 +102,11 @@ class Route {
      */
 
     public static function delete(string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            if($_SERVER['REQUEST_METHOD'] === RouteConstants::HTTP_DELETE) {
-                $callback();
-            } else {
-                DefaultHandler::invalidRequestMethod();
-            }
-        }
+        self::matchRoute($uri, RouteConstants::HTTP_DELETE, $callback);
     }
 
     /**
-     * Default handler for all request methods
+     * Default helper method for all request methods
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called 
@@ -120,14 +114,11 @@ class Route {
      */
 
     public static function all(string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            $callback();
-        }
+        self::matchRoute($uri, [ RouteConstants::HTTP_GET, RouteConstants::HTTP_POST, RouteConstants::HTTP_PUT, RouteConstants::HTTP_DELETE ], $callback);
     }
 
     /**
-     * Default handler for multiple request methods
+     * Default helper method for multiple request methods
      * 
      * @param array $methods The allowed methods
      * @param string $uri The requested route
@@ -136,14 +127,7 @@ class Route {
      */
 
     public static function multiple(array $methods, string $uri, $callback) : void {
-        if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
-            self::$NOT_FOUND = false;
-            if(Util::inArray($_SERVER['REQUEST_METHOD'], $methods)) {
-                $callback();
-            } else {
-                DefaultHandler::invalidRequestMethod();
-            }
-        } 
+        self::matchRoute($uri, $methods, $callback);
     }
 
     /*

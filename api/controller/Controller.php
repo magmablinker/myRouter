@@ -32,33 +32,14 @@ abstract class Controller {
      * to return if the content-type is html
      */
 
-    public static function html() {
-        header(RouteConstants::CONTENT_TYPE_TEXT);
-        $backtrace = debug_backtrace();
-        $backtrace = isset($backtrace[1]) ? $backtrace[1]['class'] : $backtrace[0]['class'];
-
-        View::json([
-            "message" => "Please override this method in the controller " . $backtrace
-        ]);
-    }
+    public static function html() {}
 
     /*
      *  Function that will return whatever it's supposed
      *  to return if the content-type is json
      */
 
-    public static function json() {
-        header(RouteConstants::CONTENT_TYPE_JSON);
-        return array(
-            "info" => array(
-                "route" => Route::$REQUEST_ROUTE,
-                "controller" => "Controller"
-            ),
-            "data" => array(
-                "notice" => "please override this function."
-            )
-        );
-    }
+    public static function json() {}
 
 }
 

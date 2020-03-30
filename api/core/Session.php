@@ -110,6 +110,10 @@ class Session {
      */
 
     private function validateSession() : bool {
+        if(!$this->getSessionVar("IP_ADDR")) {
+            $this->regenerateSession();
+        }
+
         return !(($this->getSessionVar('IP_ADDR') != $_SERVER['REMOTE_ADDR']) || ($this->getSessionVar('USER_AGENT') != $_SERVER['HTTP_USER_AGENT']));
     }
 
