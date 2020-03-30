@@ -15,7 +15,7 @@ autoloader you can initialize the router via the following function
 Route::build();
 ```
 
-### Adding routes
+### Adding web routes
 How do you add a route to this router?
 ```php
 # This will add a "GET" Route to the URI "/"
@@ -33,6 +33,10 @@ Route::multiple(["PUT", "POST"], "/foo", function(){
     print($_SERVER['REQUEST_METHOD']);
 });
 ```
+#### API routes
+API and web routes are split up in different files
+all API routes belong to the file "api/api.php" and all
+web routes belong to "api/web.php"
 
 How do you add a route with parameters?
 ```PHP
