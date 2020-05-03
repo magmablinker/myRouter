@@ -42,15 +42,19 @@ class Route {
      * @param string $uri The requested route
      * @param mixed $method, either a string or an array of allowed http methods
      * @param function $callback The function that will be called
-     * 
+     * @param function $middleware The middleware that will be called before the $callback
      */
 
-    private static function matchRoute(string $uri, $method, $callback) : void {
+    private static function matchRoute(string $uri, $method, $callback, $middleware = null) : void {
         if(self::$REQUEST_ROUTE != null && preg_match("@^" . $uri . "?$@", self::$REQUEST_ROUTE)) {
             self::$NOT_FOUND = false;
 
             if($_SERVER['REQUEST_METHOD'] === $method || ((is_array($method)) && in_array($_SERVER['REQUEST_METHOD'], $method))) {
-                $callback();
+                if(is_null($middleware)) {
+                    $callback();
+                } else {
+                    $middleware($callback);
+                }
             } else {
                 DefaultHandler::invalidRequestMethod();
             }
@@ -62,11 +66,12 @@ class Route {
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function get(string $uri, $callback) : void {
-        self::matchRoute($uri, RouteConstants::HTTP_GET, $callback);
+    public static function get(string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, RouteConstants::HTTP_GET, $callback, $middleware);
     }
 
     /**
@@ -74,11 +79,12 @@ class Route {
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function post(string $uri, $callback) : void {
-        self::matchRoute($uri, RouteConstants::HTTP_POST, $callback);
+    public static function post(string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, RouteConstants::HTTP_POST, $callback. $middleware);
     }
 
     /**
@@ -86,11 +92,12 @@ class Route {
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function put(string $uri, $callback) : void {
-        self::matchRoute($uri, RouteConstants::HTTP_PUT, $callback);
+    public static function put(string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, RouteConstants::HTTP_PUT, $callback, $middleware);
     }
 
     /**
@@ -98,11 +105,12 @@ class Route {
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function delete(string $uri, $callback) : void {
-        self::matchRoute($uri, RouteConstants::HTTP_DELETE, $callback);
+    public static function delete(string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, RouteConstants::HTTP_DELETE, $callback, $middleware);
     }
 
     /**
@@ -110,11 +118,12 @@ class Route {
      * 
      * @param string $uri The requested route
      * @param function $callback The function that will be called 
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function all(string $uri, $callback) : void {
-        self::matchRoute($uri, [ RouteConstants::HTTP_GET, RouteConstants::HTTP_POST, RouteConstants::HTTP_PUT, RouteConstants::HTTP_DELETE ], $callback);
+    public static function all(string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, [ RouteConstants::HTTP_GET, RouteConstants::HTTP_POST, RouteConstants::HTTP_PUT, RouteConstants::HTTP_DELETE ], $callback, $middleware);
     }
 
     /**
@@ -123,11 +132,12 @@ class Route {
      * @param array $methods The allowed methods
      * @param string $uri The requested route
      * @param function $callback The function that will be called 
+     * @param function $middleware The middleware that will be called before the $callback
      * 
      */
 
-    public static function multiple(array $methods, string $uri, $callback) : void {
-        self::matchRoute($uri, $methods, $callback);
+    public static function multiple(array $methods, string $uri, $callback, $middleware = null) : void {
+        self::matchRoute($uri, $methods, $callback, $middleware);
     }
 
     /*

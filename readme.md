@@ -48,6 +48,15 @@ Route::get("/user/([0-9]+)", function(){
 });
 ```
 
+How do you add a route with a middleware?
+```PHP
+# This will add a "POST" Route with the middleware Auth::isAuthorized
+# which checks if the user is authorized.
+Route::post("/user/upload/video", function() {
+    # Do whatever needs to be done
+}, "Auth::isAuthorized");
+```
+
 I also added three classes to manage sessions, database connections and login. They work like following.
 ##### Session
 ```PHP
