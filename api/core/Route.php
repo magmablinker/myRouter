@@ -84,7 +84,7 @@ class Route {
      */
 
     public static function post(string $uri, $callback, $middleware = null) : void {
-        self::matchRoute($uri, RouteConstants::HTTP_POST, $callback. $middleware);
+        self::matchRoute($uri, RouteConstants::HTTP_POST, $callback, $middleware);
     }
 
     /**
