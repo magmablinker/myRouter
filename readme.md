@@ -55,6 +55,20 @@ How do you add a route with a middleware?
 Route::post("/user/upload/video", function() {
     # Do whatever needs to be done
 }, "Auth::isAuthorized");
+
+# The middleware would look something like that:
+class Auth {
+
+    public static function isAuthorized($next) {
+        if(isset($_SESSION['whatever'])) {
+            $next();
+        } else {
+            View::json(DefaultHandler::unauthorizedAccess());
+        }
+    }
+
+}
+
 ```
 
 I also added three classes to manage sessions, database connections and login. They work like following.
